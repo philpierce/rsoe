@@ -1,0 +1,97 @@
+/* Unchanged */
+/* ANIMATIONS */
+@-webkit-keyframes pulse {
+		from
+            {
+            -webkit-transform: scale(0.1, 0.1); opacity: 0.0;
+            }
+		95%
+            {
+			/*-moz-transform: scale(1.3);*/
+			opacity: 1.3;
+            }
+		to
+            {
+            -webkit-transform: scale(1.2, 1.2); opacity: 0.0;
+            }
+    }
+    
+@-moz-keyframes pulse {
+		from {
+		  -moz-transform: scale(0.1, 0.1); opacity: 0.0;
+		}
+		95% {
+			opacity: 1.3;
+		}
+		to {
+			-moz-transform: scale(1.2, 1.2); opacity: 0.0;
+		}
+}
+
+/*.lstev_label {*/
+.lstev_label {
+	-webkit-border-radius:35px;
+	-webkit-animation: pulsate 1.5s ease-out infinite;
+	-webkit-box-shadow:inset 0 0 7px #06f, inset 0 0 7px #06f, inset 0 0 7px #06f, 0 0 5px #06f, 0 0 7px #06f, 0 0 7px #06f;
+	-webkit-animation: pulsate 1.5s ease-out infinite;
+	-webkit-animation: pulsate 1.5s ease-out 1s 9999;
+	-webkit-backface-visibility: hidden;
+	-webkit-perspective: 1000;
+	-webkit-animation-fill-mode: inherit;
+
+	-moz-border-radius:35px;
+	-moz-animation: pulsate 1.5s ease-out infinite;
+	-moz-box-shadow:inset 0 0 7px #06f, inset 0 0 7px #06f, inset 0 0 7px #06f, 0 0 7px #06f, 0 0 7px #06f, 0 0 7px #06f;
+	-moz-animation: pulsate 1.5s ease-out infinite;
+	-moz-animation: pulsate 1.5s ease-out 1s 3;
+	-moz-backface-visibility: hidden;
+	-moz-perspective: 1000;
+	
+	border-radius:35px;
+	perspective: 1000;
+	backface-visibility: hidden;
+	border:1pt solid #fff;
+	box-shadow:inset 0 0 7px #06f, inset 0 0 7px #06f, inset 0 0 7px #06f, 0 0 7px #06f, 0 0 7px #06f, 0 0 7px #06f;	
+	animation-fill-mode: inherit;
+	animation: pulse 1.5s ease-out 1s 9999;
+	height:35px!important;
+	margin:-7px 0 0 -7px;
+	width:35px!important;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (device-width: 768px) {
+		.lstev_label {
+			margin:-10px 0 0 -10px;
+		}
+}
+
+/*.lsteq_label {*/
+.lsteq_label {
+	border:1pt solid #fff;
+	border-radius:20px;
+	box-shadow:inset 0 0 5px #FF0000, inset 0 0 5px #FF0000, inset 0 0 5px #FF0000, 0 0 5px #FF0000, 0 0 5px #FF0000, 0 0 5px #FF0000;
+	height:20px!important;
+	margin:-5px 0 0 -5px;
+	width:20px!important;
+	margin:-5px 0 0 -5px;
+
+	-webkit-animation: pulsate 1.5s ease-out infinite;
+	-webkit-border-radius:20px;
+	-webkit-box-shadow:inset 0 0 5px #FF0000, inset 0 0 5px #FF0000, inset 0 0 5px #FF0000, 0 0 5px #FF0000, 0 0 5px #FF0000, 0 0 5px #FF0000;
+	-webkit-animation: pulsate 1.5s ease-out infinite;
+	-webkit-animation: pulse 1.5s ease-out 1s 9999;
+				
+	-moz-animation: pulsate 1.5s ease-out infinite;
+	-moz-border-radius:20px;
+	-moz-box-shadow:inset 0 0 5px #FF0000, inset 0 0 5px #FF0000, inset 0 0 5px #FF0000, 0 0 5px #FF0000, 0 0 5px #FF0000, 0 0 5px #FF0000;
+	-moz-animation: pulsate 1.5s ease-out infinite;
+	-moz-animation: pulse 1.5s ease-out 1s 3;
+	
+	animation: pulse 1.5s ease-out 1s 9999;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (device-width: 768px) {
+		.lsteq_label {
+			margin:-10px 0 0 -10px;
+		}
+}

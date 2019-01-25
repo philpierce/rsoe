@@ -1,0 +1,503 @@
+<!-- Unchanged -->
+  
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <title>RSOE EDIS - Global Birdflu Monitoring</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="database/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="database/css/footer-basic-centered.css"/>
+    <!--<link rel="stylesheet" href="database/css/font-awesome-animation.min.css"/>-->
+    <link rel="stylesheet" href="database/css/normalize.css"/>
+    <!--<link rel="stylesheet" href="database/css/custom.css"/>-->
+    <link rel="stylesheet" href="assets/css/gmapani.css"/>
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700italic,700,500&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="assets/material/css/bootstrap-material-design.css" rel="stylesheet">
+    <link href="assets/material/css/ripples.min.css" rel="stylesheet">
+    
+    <!-- HTML Meata start -->
+    <meta name="description" content="This service tracks the spread of avian influenza on the Earth. Based by RSOE EDIS." />
+    <meta name="keywords" content="emergency, disaster, monitoring, interactive, disaster map, earthquake, landslide, tsunami, volcano, supervolcano, epidemic, epidemic hazard, biology hazard, terror attack, accident, incident, tropical storm, severe weather, tornado, hurricane, hailstorm, inidentified hazard" />
+    <meta name="author" content="Zsolt Boszormenyi - hunnomad@gmail.com">
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate, post-check=0, pre-check=0">
+    <meta http-equiv="expires" content="Sat, 31 Oct 2014 00:00:00 GMT">
+    <meta http-equiv="pragma" content="no-cache">
+    <!-- HTML Meata end -->
+    <!-- EDGE Compatibility -->
+    <meta name="application-name" content="RSOE EDIS - Global Birdflu Monitoring"/>
+    <meta name="msapplication-TileColor" content="#001dfc"/>
+    <meta name="msapplication-notification" content="frequency=30;polling-uri=http://notifications.buildmypinnedsite.com/?feed=http://feeds.feedburner.com/RsoeEdis-EmergencyAndDisasterInformation&amp;id=1;polling-uri2=http://notifications.buildmypinnedsite.com/?feed=http://feeds.feedburner.com/RsoeEdis-EmergencyAndDisasterInformation&amp;id=2;polling-uri3=http://notifications.buildmypinnedsite.com/?feed=http://feeds.feedburner.com/RsoeEdis-EmergencyAndDisasterInformation&amp;id=3;polling-uri4=http://notifications.buildmypinnedsite.com/?feed=http://feeds.feedburner.com/RsoeEdis-EmergencyAndDisasterInformation&amp;id=4;polling-uri5=http://notifications.buildmypinnedsite.com/?feed=http://feeds.feedburner.com/RsoeEdis-EmergencyAndDisasterInformation&amp;id=5; cycle=1"/>
+    <!-- EDGE Compatibility -->
+    <meta property="og:title" content="RSOE EDIS - Global Birdflu Monitoring." />
+    <meta property="og:site_name" content="RSOE EDIS - Global Birdflu Monitoring."/>
+    <meta property="og:url" content="http://hisz.rsoe.hu/alertmap/birdflu_monitor.php?area=indo" />
+    <meta property="og:description" content="This service tracks the spread of avian influenza on the Earth. Based on RSOE EDIS."/>
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="http://hisz.rsoe.hu/images/birdflu_monitoring.jpg" />
+    
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAkP9GFOPoD3cD3SMAWnGtPuynQwgYhUd0&language=en_US&libraries=visualization,geometry&language=en"></script>
+    <script src="database/js/nite-overlay.js" type="text/javascript" charset="utf-8"></script>    
+    <script src="database/js/pushstream.js" type="text/javascript" charset="utf-8"></script>
+    <!-- Toastmessage -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" type="text/css" />
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-253842-1', 'auto');
+  ga('send', 'pageview');
+
+</script>    <style type="text/css">
+    div.report{max-width: 350px;}
+    </style>
+    <body>
+    <nav class="navbar navbar-inverse navbar-fixed-top navbar-danger">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="birdflu_monitor.php">RSOE EDIS - Global Birdflu Monitor</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <!--<li><a href="index2.php">Alertmap</a></li>-->
+            <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-map-o"></i> Area<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+			     <li id="menu_world"><a href="index2.php">Worldwide</a></li>
+			     <li id="menu_usa"><a href="?area=usa">North America</a></li>
+                 <li id="menu_cam"><a href="?area=mam">Central America</a></li>
+                 <li id="menu_sam"><a href="?area=dam">South America</a></li>
+                 <li id="menu_eur"><a href="?area=eu">Europe</a></li>
+                 <li id="menu_asia"><a href="?area=asia">Asia</a></li>
+                 <li id="menu_indo"><a href="?area=indo">Indonesian Archipelago</a></li>
+                 <li id="menu_pac"><a href="?area=pac">Pacific Ocean</a></li>
+                 <li id="menu_aus"><a href="?area=aus_newz">Australia &amp; New Zealand</a></li>
+                 <li id="menu_afrn"><a href="?area=afrn">Africa (North) &amp; Middle-East</a></li>
+                 <li id="menu_afrs"><a href="?area=afr">Africa (South)</a></li>
+            </ul>
+            </li>
+            
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-credit-card"></i> Premium Services<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="http://hisz.rsoe.hu/ris/" target="_blank">Rapid Information System</a></li>
+                <li><a href="https://hisz.rsoe.hu/ws/" target="_blank">REST-API Service</a></li>
+                <li><a href="https://hisz.rsoe.hu/" target="_blank">Common Alerting Protocol (CAP)</a></li>
+            </ul>
+            </li> 
+                           
+          </ul>
+          
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bars"></i> Menu<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="database/?pageid=about_email">Email Alert</a></li>
+                    <li><a href="database/?pageid=about_rss">RSS Feeds</a></li>
+                    <li><a href="database/?pageid=about_icons">Events definition</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="https://play.google.com/store/apps/details?id=org.rsoe.android.edis_pms" target="_blank">RSOE EDIS Android client</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="database/?pageid=about_contact">Contact</a></li>
+                    <li><a href="database/?pageid=about_us">About us</a></li>
+                    <!--<li><a href="#">Help</a></li>-->
+                </ul>
+                </li>
+            </ul>
+          </div>
+          
+        </div>
+        </div>        
+      </div>
+    </nav>
+<div style="margin-top: 70px;"></div>
+
+<div class="container-fluid">
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div id="map_canvas" style="width:100%; height:620px;padding:0 !important;margin:0 !important;"><i class="fa fa-spinner fa-pulse"></i> Loading google maps....</div>
+        </div>
+        <div class="panel-footer" style="min-height: 40px !important;">
+        <div style="float:left;display: block;"><small><em>The information is updated every 5 minutes. There is no need to reload the page.</em></small></div>
+        <div style="right: 10px;float:right;">
+        <!--<small>Bird flu spread:</small> <input id="bfluCheckbox" type="checkbox" onclick="toggleGroup('bflu')" checked="checked" />-->
+        </div>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+
+    <section id="bflu_human">
+    <div class="panel panel-danger">
+        <div class="panel-heading"><h3 class="panel-title"><strong>Global Birdflu Events</strong></h3></div>
+        <div class="panel-body">
+        
+        <div id="bflumon"></div>
+        
+        </div>
+        <div class="panel-footer"><small><em>The information is updated every 5 minutes. There is no need to reload the page.</em></small></div>
+    </div>
+    </section>
+    
+</div>
+<footer class="footer-basic-centered">
+    <p class="footer-company-motto">We watch, We analyze, We notify</p>
+        <p class="footer-links">
+        <a href="../">Home</a>&nbsp;&nbsp;&nbsp;
+        <a target="_blank" href="https://www.facebook.com/RsoeEdis/">Facebook</a>&nbsp;&nbsp;&nbsp;
+        <a target="_blank" href="https://twitter.com/RSOE_EDIS">Twitter</a>&nbsp;&nbsp;&nbsp;
+        <a target="_blank" href="https://play.google.com/store/apps/details?id=org.rsoe.android.edis_pms">Google Play</a>&nbsp;&nbsp;&nbsp;
+        <a href="database/?pageid=about_us">About</a>&nbsp;&nbsp;&nbsp;
+        <a href="database/?pageid=about_contact">Contact</a>
+    </p>
+    <p class="footer-company-name">RSOE EDIS &copy; 2004-2019</p>
+</footer>
+<script type="text/javascript">
+$(document).ready(function(){
+    var map;
+    var gmarkers = [];
+    var setRegion = 'indo';
+    
+    // Load Google maps -------------------------------------------------------------------------------------------------------------------------------------------------    
+    function initialize()
+        {
+
+    var styles = [
+    {
+      featureType: "all",
+      stylers: [
+       { saturation: -80 }
+      ]
+    },{
+      featureType: "road.arterial",
+      elementType: "geometry",
+      stylers: [
+        { hue: "#00ffee" },
+        { saturation: 50 }
+      ]
+    },{
+      featureType: "poi.business",
+      elementType: "labels",
+      stylers: [
+        { visibility: "off" }
+      ]
+    }
+    ];
+    
+        var mapCenter = new google.maps.LatLng(-5.834616,124.145508);
+        var zLevel = 4;
+        var myOptions = {
+            zoom: 4,
+            center: mapCenter,
+            mapTypeId: google.maps.MapTypeId.ROUTE
+            }
+        map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+        map.setOptions({styles: styles});
+        nite.init(map);
+
+    // Icon definition --------------------------------------------------------------------------------------------------------------------------------------------------
+            var DS_BH_EP = new google.maps.MarkerImage('icon2/biohazard1.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_BH_BH = new google.maps.MarkerImage('icon2/biohazard2.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_EX = new google.maps.MarkerImage('icon2/explosion.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_FL = new google.maps.MarkerImage('icon2/flood.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_TS = new google.maps.MarkerImage('icon2/tsunami.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_FF = new google.maps.MarkerImage('icon2/torrental_rain.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_HT = new google.maps.MarkerImage('icon2/napocska_25x25.png',new google.maps.Size(25,25),new google.maps.Point(0,0),new google.maps.Point(12,12));
+        var DS_SNW = new google.maps.MarkerImage('icon2/snowstorm.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_CW = new google.maps.MarkerImage('icon2/Hydro_Meteor_Drizzle.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_VI_AC = new google.maps.MarkerImage('icon2/vehicle_accident.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_VI_VO = new google.maps.MarkerImage('icon2/railway_accident.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_VI_SH = new google.maps.MarkerImage('icon2/ship_accident.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_VI_ARP = new google.maps.MarkerImage('icon2/airplan_accident.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_TO_F0 = new google.maps.MarkerImage('icon2/tornado.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_TO_F2 = new google.maps.MarkerImage('icon2/tornado.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_FR = new google.maps.MarkerImage('icon2/tuz.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_BT = new google.maps.MarkerImage('icon2/epidemic.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_VA = new google.maps.MarkerImage('icon2/vulano_threat.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_VE = new google.maps.MarkerImage('icon2/vulano_eruption.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_ST = new google.maps.MarkerImage('icon2/severe_weather.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_NC = new google.maps.MarkerImage('icon2/nuclear_accident.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_PW = new google.maps.MarkerImage('icon2/powerout.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_FLI = new google.maps.MarkerImage('icon2/Inland_Water_small.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_EC = new google.maps.MarkerImage('icon2/severe_weather.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_AC = new google.maps.MarkerImage('icon2/extraan.gif',new google.maps.Size(16,16),new google.maps.Point(0,0),new google.maps.Point(8,8));
+        var DS_AV = new google.maps.MarkerImage('icon2/avalanche.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_BH_EH = new google.maps.MarkerImage('icon2/epidemic.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_VW = new google.maps.MarkerImage('icon2/terror.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_CC = new google.maps.MarkerImage('icon2/greenearth2.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_WF = new google.maps.MarkerImage('icon2/wildfire.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_LS = new google.maps.MarkerImage('icon2/avalanche.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_BH_5A = new google.maps.MarkerImage('icon2/birdflu1.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_CA = new google.maps.MarkerImage('icon2/chemical_accident2.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_HS = new google.maps.MarkerImage('icon2/hailstorm.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_BH_HO = new google.maps.MarkerImage('icon2/locust.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_BH_5H = new google.maps.MarkerImage('icon2/birdflu2.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_COR = new google.maps.MarkerImage('icon2/extraan.gif',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_HAB = new google.maps.MarkerImage('icon2/alga_25x25.png',new google.maps.Size(25,25),new google.maps.Point(0,0),new google.maps.Point(12,12));
+        var DS_GW = new google.maps.MarkerImage('icon2/tsunami.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_DR = new google.maps.MarkerImage('icon2/drught.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_LUC = new google.maps.MarkerImage('icon2/locust.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_HZ = new google.maps.MarkerImage('icon2/chemical_accident2.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_SL = new google.maps.MarkerImage('icon2/flood.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_CR = new google.maps.MarkerImage('icon2/nuclear_accident.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DC_SE = new google.maps.MarkerImage('icon2/tsunami.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DC_CE = new google.maps.MarkerImage('icon2/extraan.gif',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_VIV = new google.maps.MarkerImage('icon2/vehicle_incident.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_VIS = new google.maps.MarkerImage('icon2/ship_incident.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_VIT = new google.maps.MarkerImage('icon2/railway_incident.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_VIA = new google.maps.MarkerImage('icon2/airplan_incident.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_CO = new google.maps.MarkerImage('icon2/cosmic_event.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_UEV = new google.maps.MarkerImage('icon2/extraan.gif',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_ENP = new google.maps.MarkerImage('icon2/chemical_accident2.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_JEL = new google.maps.MarkerImage('icon2/incident_jellyfish.png',new google.maps.Size(25,25),new google.maps.Point(0,0),new google.maps.Point(12, 25));
+        var DS_SHA = new google.maps.MarkerImage('icon2/incident_shark.png',new google.maps.Size(25,25),new google.maps.Point(0,0),new google.maps.Point(12, 25));
+        var DS_UGE = new google.maps.MarkerImage('icon2/seism.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10,10));
+        var DS_EQ_M1 = new google.maps.MarkerImage('icon2/feher.gif',new google.maps.Size(10,10),new google.maps.Point(0,0),new google.maps.Point(5,5));
+        var DS_EQ_M2 = new google.maps.MarkerImage('icon2/kek.gif',new google.maps.Size(10,10),new google.maps.Point(0,0),new google.maps.Point(5,5));
+        var DS_EQ_M3 = new google.maps.MarkerImage('icon2/sarga.gif',new google.maps.Size(10,10),new google.maps.Point(0,0),new google.maps.Point(5,5));
+        var DS_EQ_M4 = new google.maps.MarkerImage('icon2/narancs.gif',new google.maps.Size(10,10),new google.maps.Point(0,0),new google.maps.Point(5,5));
+        var DS_EQ_M5 = new google.maps.MarkerImage('icon2/piros.gif',new google.maps.Size(10,10),new google.maps.Point(0,0),new google.maps.Point(5,5));
+        var DS_EQ_M1L = new google.maps.MarkerImage('icon2/feher_lst.gif',new google.maps.Size(30,30),new google.maps.Point(0,0),new google.maps.Point(30, 30));
+        var DS_EQ_M2L = new google.maps.MarkerImage('icon2/kek_lst.gif',new google.maps.Size(30,30),new google.maps.Point(0,0),new google.maps.Point(30, 30));
+        var DS_EQ_M3L = new google.maps.MarkerImage('icon2/sarga_lst.gif',new google.maps.Size(30,30),new google.maps.Point(0,0),new google.maps.Point(30, 30));
+        var DS_EQ_M4L = new google.maps.MarkerImage('icon2/narancs_lst.gif',new google.maps.Size(30,30),new google.maps.Point(0,0),new google.maps.Point(30, 30));
+        var DS_EQ_M5L = new google.maps.MarkerImage('icon2/piros_lst.gif',new google.maps.Size(30,30),new google.maps.Point(0,0),new google.maps.Point(30, 30));
+        var DS_TC_TD = new google.maps.MarkerImage('icon2/FHTD.png',new google.maps.Size(21,22),new google.maps.Point(0,0),new google.maps.Point(10,11));
+        var DS_TC_TC = new google.maps.MarkerImage('icon2/FHTS.png',new google.maps.Size(21,22),new google.maps.Point(0,0),new google.maps.Point(10,11));
+        var DS_TC_S1 = new google.maps.MarkerImage('icon2/FH1.png',new google.maps.Size(21,22),new google.maps.Point(0,0),new google.maps.Point(10,11));
+        var DS_TC_S2 = new google.maps.MarkerImage('icon2/FH2.png',new google.maps.Size(21,22),new google.maps.Point(0,0),new google.maps.Point(10,11));
+        var DS_TC_S3 = new google.maps.MarkerImage('icon2/FH3.png',new google.maps.Size(21,22),new google.maps.Point(0,0),new google.maps.Point(10,11));
+        var DS_TC_S4 = new google.maps.MarkerImage('icon2/FH4.png',new google.maps.Size(21,22),new google.maps.Point(0,0),new google.maps.Point(10,11));
+        var DS_TC_S5 = new google.maps.MarkerImage('icon2/FH5.png',new google.maps.Size(21,22),new google.maps.Point(0,0),new google.maps.Point(10,11));
+        var DS_WFR   = new google.maps.MarkerImage('icon2/wildfire.png',new google.maps.Size(20,20),new google.maps.Point(0,0),new google.maps.Point(10, 20));
+        var DS_MG   = new google.maps.MarkerImage('icons/Civil_Rioting_ch_copy_sm.png',new google.maps.Size(25,25),new google.maps.Point(0,0),new google.maps.Point(12, 12));    // Icon definition --------------------------------------------------------------------------------------------------------------------------------------------------
+    
+    // Load data start --------------------------------------------------------------------------------------------------------------------------------------------------
+    loadAvianFluLayer();
+    loadAffectedArea();
+    
+    var refreshTimer = "240000";
+    var autoLoad = setInterval(
+    function ()
+        {
+        clearOverlays();
+        loadAvianFluLayer();
+        loadAffectedArea();
+        },refreshTimer);
+    // Load data end ----------------------------------------------------------------------------------------------------------------------------------------------------
+
+    // Load Google maps -------------------------------------------------------------------------------------------------------------------------------------------------
+
+    function clearOverlays()
+        {
+        for (var i = 0; i < gmarkers.length; i++ )
+            {
+            gmarkers[i].setMap(null);
+            }
+        gmarkers.length = 0;
+    }
+
+    function add_event_marker(lat,lng,title,icon,box_html,stCss) {
+        var infowindow = new google.maps.InfoWindow({
+            content: box_html,
+        });
+       
+        var MarkerCenter = new google.maps.LatLng(lat,lng);
+        
+        var image = new google.maps.MarkerImage(
+            'icon2/'+icon,
+            null, // size
+            null, // origin
+            new google.maps.Point( 20, 20 ),
+            new google.maps.Size( 20, 20 )
+            );        
+        
+        var marker = new google.maps.Marker({
+            flat: true,
+            position: MarkerCenter,
+            map: map,
+            icon: image,
+            //title: title,
+            title: 'lastEvent',
+            optimized: false,
+            visible: true,
+            title : stCss
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {   
+            map.setZoom(7);
+            infowindow.close(this);
+            map.setCenter(this.getPosition());
+            infowindow.open(map, this);
+        });
+    
+        google.maps.event.addListener(infowindow,'closeclick',function(){
+            infowindow.close();
+            //map.setCenter(mapCenter);
+            //map.setZoom(zLevel);
+        });
+        gmarkers.push(marker);
+        return marker;
+    } 
+    
+    function add_marker(lat,lng,title,icon,box_html) {
+        var infowindow = new google.maps.InfoWindow({
+            content: box_html,
+        });
+       
+        var MarkerCenter = new google.maps.LatLng(lat,lng);
+ 
+        var marker = new google.maps.Marker({
+            position: MarkerCenter,
+            map: map,
+            icon: 'icon2/'+icon,
+            title: title,
+            optimized: false
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {   
+            map.setZoom(7);
+            infowindow.close(this);
+            map.setCenter(this.getPosition());
+            infowindow.open(map, this);
+        });
+    
+        google.maps.event.addListener(infowindow,'closeclick',function(){
+            infowindow.close();
+            //map.setCenter(mapCenter);
+            //map.setZoom(zLevel);
+        });
+        gmarkers.push(marker);
+        return marker;
+    }  
+
+    function add_blfu_marker(lat,lon,title,icon,hbox){
+    
+        var infowindow = new google.maps.InfoWindow({
+            content: box_html
+        });
+
+        var MarkerCenter = new google.maps.LatLng(lat,lng);
+        var pinIcon = new google.maps.MarkerImage('icon2/'+icon,new google.maps.Size(21,22),new google.maps.Point(0,0),new google.maps.Point(10,11));; 
+
+        var marker = new google.maps.Marker({
+            map: map,
+            position: MarkerCenter,
+            icon: pinIcon,
+            type: bflu
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+            map.setZoom(7);
+            infowindow.close(this);
+            map.setCenter(this.getPosition());
+            infowindow.open(map, this);
+        });
+
+        google.maps.event.addListener(infowindow,'closeclick',function(){
+            infowindow.close();
+            //map.setCenter(mapCenter);
+            //map.setZoom(zLevel);
+        });
+
+        if (!gmarkers[type]) gmarkers[type] = [];
+        gmarkers[type].push(marker);
+        return marker;
+    }
+
+    function toggleGroup(type) {
+    for (var i = 0; i < gmarkers[type].length; i++) {
+        var marker = gmarkers[type][i];
+        if (!marker.getVisible()) {
+            marker.setVisible(true);
+            }
+        else{
+            marker.setVisible(false);
+            }
+        }
+    }
+    // DataGrabber ---------------------------------------------------------------------------------------------
+    function loadAffectedArea(){
+        $.getJSON('database/mapData/map_event_birdflu_affected.json', function(data) {
+        for (var i = 0; i < data.length; i++)
+            {
+            var item = data[i];
+            var lat     = item.lat;
+            var lon     = item.lon;
+            var title   = item.title;
+            var icon    = item.icon;
+            var hbox    = item.hbox;
+            
+            var marker = add_marker(lat,lon,title,icon,hbox);
+            }
+        });
+    }
+
+    function loadAvianFluLayer(){
+        $.getJSON('database/mapData/map_birdflu_event.json', function(data) {
+        for (var i = 0; i < data.length; i++)
+            {
+            var item = data[i];
+            var id      = item.id;
+            var lat     = item.lat;
+            var lon     = item.lon;
+            var title   = item.title;
+            var icon    = item.icon;
+            var hbox    = item.hbox;
+            var lastEvent   = item.lastEvent;
+            
+            if(lastEvent==1){stCss='lstev_label';}else{stCss=title;}
+            
+            var marker = add_event_marker(lat,lon,title,icon,hbox,stCss);
+            }
+        });
+    }
+} // End of INIT
+google.maps.event.addDomListener(window, 'load', initialize); 
+
+var url = window.location;
+$('ul.nav a[href="' + url + '"]').parent().addClass('active');
+$('ul.nav a').filter(function ()
+    {
+    return this.href == url;
+    }).parent().addClass('active').parent().parent().addClass('active');var url = window.location;
+$('ul.nav a[href="' + url + '"]').parent().addClass('active');
+$('ul.nav a').filter(function ()
+    {
+    return this.href == url;
+    }).parent().addClass('active').parent().parent().addClass('active');
+})
+</script>
+<script src="database/js/bootstrap.min.js"></script>
+<script src="database/js/ie10-viewport-bug-workaround.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script src="database/js/toaster.settings.js"></script>
+<script type="text/javascript" src="database/js/edis.push.js"></script>
+<script type="text/javascript" src="database/js/edis.birdflu_tables.js"></script>
+
+</body>
+</html>

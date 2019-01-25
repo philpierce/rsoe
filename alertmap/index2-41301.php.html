@@ -1,0 +1,729 @@
+<!-- Unchanged -->
+  
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <title>RSOE EDIS - Emergency and Disaster Information Service</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link href="database/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="database/css/footer-basic-centered.css"/>
+    <!--<link rel="stylesheet" href="database/css/font-awesome-animation.min.css"/>-->
+    <link rel="stylesheet" href="database/css/normalize.css"/>
+    <!--<link rel="stylesheet" href="database/css/custom.css"/>-->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700italic,700,500&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- HTML Meata start -->
+    <meta name="description" content="Welcome to the RSOE Emergency and Disaster Information Service (EDIS) website. The page shows the disaster and emergency events that occurred on Earth in near real time." />
+    <meta name="keywords" content="emergency, disaster, monitoring, interactive, disaster map, earthquake, landslide, tsunami, volcano, supervolcano, epidemic, epidemic hazard, biology hazard, terror attack, accident, incident, tropical storm, severe weather, tornado, hurricane, hailstorm, inidentified hazard" />
+    <meta name="author" content="Zsolt Boszormenyi - hunnomad@gmail.com">
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate, post-check=0, pre-check=0">
+    <meta http-equiv="expires" content="Sat, 31 Oct 2014 00:00:00 GMT">
+    <meta http-equiv="pragma" content="no-cache">
+    <!-- HTML Meata end -->
+    <!-- EDGE Compatibility -->
+    <meta name="application-name" content="RSOE EDIS"/>
+    <meta name="msapplication-TileColor" content="#001dfc"/>
+    <meta name="msapplication-notification" content="frequency=30;polling-uri=http://notifications.buildmypinnedsite.com/?feed=http://feeds.feedburner.com/RsoeEdis-EmergencyAndDisasterInformation&amp;id=1;polling-uri2=http://notifications.buildmypinnedsite.com/?feed=http://feeds.feedburner.com/RsoeEdis-EmergencyAndDisasterInformation&amp;id=2;polling-uri3=http://notifications.buildmypinnedsite.com/?feed=http://feeds.feedburner.com/RsoeEdis-EmergencyAndDisasterInformation&amp;id=3;polling-uri4=http://notifications.buildmypinnedsite.com/?feed=http://feeds.feedburner.com/RsoeEdis-EmergencyAndDisasterInformation&amp;id=4;polling-uri5=http://notifications.buildmypinnedsite.com/?feed=http://feeds.feedburner.com/RsoeEdis-EmergencyAndDisasterInformation&amp;id=5; cycle=1"/>
+    <!-- EDGE Compatibility -->
+    <meta property="og:title" content="RSOE EDIS - - Event reports (Earthquakes, events, tropical storms, tsunamies and others)" />
+    <meta property="og:site_name" content="RSOE EDIS"/>
+    <meta property="og:url" content="http://hisz.rsoe.hu/alertmap/index2.php?area=indo" />
+    <meta property="og:description" content="RSOE Emergency and Disaster Information Service - AlertMap Service"/>
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:image" content="http://hisz.rsoe.hu/images/rsoe_edis_fbwall.png" />
+    <link rel="alternate" type="application/rss+xml" title="Emergency and Disaster Information" href="http://feeds.feedburner.com/RsoeEdis-EmergencyAndDisasterInformation?format=xml" />
+<link rel="alternate" type="application/rss+xml" title="Epidemic and Biology Hazard Warning Message" href="http://feeds.feedburner.com/RsoeEdis-Ebhwm?format=xml" />
+<link rel="alternate" type="application/rss+xml" title="Tsunami Information" href="http://feeds.feedburner.com/RsoeEdis-TsunamiInformation?format=xml" />
+<link rel="alternate" type="application/rss+xml" title="UV Index in the USA" href="http://feeds.feedburner.com/RsoeEdis-UvIndexInTheUsa?format=xml" />
+<link rel="alternate" type="application/rss+xml" title="Earth Approaching Objects (NASA NEO)" href="http://feeds.feedburner.com/RsoeEdis-EarthApproachingObjects" />
+<link rel="alternate" type="application/rss+xml" title="Global Earthquake Report > M 2.4	" href="http://feeds.feedburner.com/RsoeEdis-EarthquakeReportM25?format=xml" />    <!-- Maps settings -->
+    <link rel="stylesheet" href="assets/css/leaflet.css"/>
+    <script src="assets/js/leaflet.js"></script>
+    <script src="assets/js/L.Terminator.js"></script>
+    <script src="assets/js/esri-leaflet.js" crossorigin=""></script>
+    <script src="assets/js/L.Icon.Pulse.js"></script>
+    <link rel="stylesheet" href="assets/css/L.Icon.Pulse.css"/>
+    <script src="assets/js/KML.js"></script>
+    <script src="assets/js/leaflet.ajax.min.js"></script>
+    <script src="assets/js/leaflet-layerjson.js"></script>
+    <script src="assets/js/SliderControl.js"></script>
+    <script src="assets/js/Polyline.encoded.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.19/topojson.min.js"></script>
+    <script src="assets/js/Control.GlobeMiniMap.js"></script>
+    <script src="assets/js/leaflet-control-boxzoom.js"></script>
+    <link rel="stylesheet" href="assets/css/leaflet-control-boxzoom.css" />
+    <script src="assets/js/Leaflet.fullscreen.min.js"></script>
+    <link rel="stylesheet" href="assets/css/leaflet.fullscreen.css" />
+    <!--<link rel="stylesheet" href="assets/css/gmapani.css"/>
+    <link rel="stylesheet" href="assets/css/lefleat_marker_anim.css"/>-->
+    <!-- Maps settings -->
+    <script src="assets/js/nanobar.js"></script>
+    <!-- Toastmessage -->
+    <script src="database/js/pushstream.js" type="text/javascript" charset="utf-8"></script>
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" type="text/css" />
+    <style type="text/css">
+    div.report{max-width: 350px;}
+    #promo-notifications{
+        background: #CC0000;
+        color: white !important;
+        font-size: 18px;
+        width: 100%;
+        font-family: 'Helvetica-Neue', Helvetica, Arial, sans-serif;
+    }
+
+    #promo-notifications ul{
+        width: 100%;
+        height: 35px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    #promo-notifications li{
+        width: 2020px;
+        line-height: 35px;
+        height: 35px;
+        position: absolute;
+        top: 0;
+        left: 100%;
+        text-align: center;
+        list-style: none;
+        color: white !important;
+    }
+    </style>
+    <!-- Toastmessage -->
+
+    <!-- Html Push Messages -->
+    <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async='async'></script>
+    <script type="text/javascript" src="js/edisOneSignal.js"></script>
+    <!-- Html Push Messages -->
+
+    <!--[if lt IE 9]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+    </head>
+    <body>
+    <div class="nanobar" id="nanobar"></div>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../">RSOE EDIS</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <!--<li><a href="index2.php">Alertmap</a></li>-->
+            <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-map-o"></i> Area<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+			     <li id="menu_world"><a href="index2.php">Worldwide</a></li>
+			     <li id="menu_usa"><a href="?area=usa">North America</a></li>
+                 <li id="menu_cam"><a href="?area=mam">Central America</a></li>
+                 <li id="menu_sam"><a href="?area=dam">South America</a></li>
+                 <li id="menu_eur"><a href="?area=eu">Europe</a></li>
+                 <li id="menu_asia"><a href="?area=asia">Asia</a></li>
+                 <li id="menu_indo"><a href="?area=indo">Indonesian Archipelago</a></li>
+                 <li id="menu_pac"><a href="?area=pac">Pacific Ocean</a></li>
+                 <li id="menu_aus"><a href="?area=aus_newz">Australia &amp; New Zealand</a></li>
+                 <li id="menu_afrn"><a href="?area=afrn">Africa (North) &amp; Middle-East</a></li>
+                 <li id="menu_afrs"><a href="?area=afr">Africa (South)</a></li>
+            </ul>
+            </li>
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-eye"></i> Public service<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="database/?pageid=risk-analysis_index"><i class="fa fa-plane" aria-hidden="true"></i> "I will travel to...</a></li>
+            </ul>
+            </li>
+            
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-credit-card"></i> Premium Services<span class="caret"></span></a>
+            <ul class="dropdown-menu">
+                <li><a href="https://hisz.rsoe.hu/ws/" target="_blank">REST-API Service</a></li>
+                <li><a href="https://hisz.rsoe.hu/" target="_blank">Common Alerting Protocol (CAP)</a></li>
+            </ul>
+            </li> 
+          <li><a href="http://hisz.rsoe.hu/ris/" target="_blank">Rapid Information System</a></li>
+          <!--<li><a href="https://hisz.rsoe.hu/shield/" title="Notification of a nearby event" target="_blank">EDIS Shield (soon)</a></li>
+          <li><a title="Global Birdflu Monitor" href="birdflu_monitor.php" style="color: red; font-weight: bold;;"><i id="healt" class="fa fa-television" style="color: red;"></i> Global Birdflu Monitor</a></li>-->            
+          </ul>
+          
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <!--  faa-flash animated -->
+                <li class="dropdown">
+                    <a href="#" title="Please click the icon" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-shield" style="color: silver;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a title="Global Health Emergency" href="birdflu_monitor.php" style="color: black; font-weight: bold;;"><i id="healt" class="fa fa-plus-circle"></i> Global Health Emergency</a></li>
+                        <li><a title="Devastating earthquake" href="#" style="color: grey;font-style: italic;"><i id="eartquake_d" class="fa fa-globe" style="color: green;"></i> Devastating earthquake  (greater than M9.0)</a></li>
+                        <li><a title="Cosmic emergencies" href="#" style="color: grey;font-style: italic;"><i id="eartquake_d" class="fa fa-globe" style="color: green;"></i> Cosmic emergencies</a></li>
+                    </ul>
+                </li>
+                <li><a title="Geomagnetic Storm Alert - No alert currently" href="database/?pageid=geostorm_index"><i class="fa fa-globe" style="color: silver;"></i></a></li>
+                <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bars"></i> Menu<span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                    <li><a href="database/?pageid=about_email">Email Alert</a></li>
+                    <li><a href="database/?pageid=about_rss">RSS Feeds</a></li>
+                    <li><a href="database/?pageid=about_icons">Events definition</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="https://play.google.com/store/apps/details?id=org.rsoe.android.edis_pms" target="_blank">RSOE EDIS Android client</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="database/?pageid=about_contact">Contact</a></li>
+                    <li><a href="database/?pageid=about_us">About us</a></li>
+                    <!--<li><a href="#">Help</a></li>-->
+                </ul>
+                </li>
+            </ul>
+          </div>
+          
+        </div>
+        </div>
+    </nav>
+
+    <div style="margin-top: 60px;"></div>
+
+    <div class="container-fluid">
+    <div id="promo-notifications">
+        </div>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <div id="maps" style="width:100%; height:620px;padding:0 !important;margin:0 !important;"><i class="fa fa-spinner fa-pulse"></i> Loading google maps....</div>
+        </div>
+        <div class="panel-footer"><small><em>The information is updated every 5 minutes. There is no need to reload the page.</em></small></div>
+        <div style="clear: both;"></div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+
+    <div style="display: block;margin:0 auto;width: 85%;">
+            <div id="clock_hou"></div>
+            <div id="clock_ny"></div>
+            <div id="clock_cus"></div>
+            <div id="clock_pus"></div>
+            <div id="clock_pac"></div>
+            <div id="clock_fij"></div>
+            <div id="clock_syd"></div>
+            <div id="clock_ty"></div>
+            <div id="clock_hgk"></div>
+            <div id="clock_bng"></div>
+            <div id="clock_abd"></div>
+            <div id="clock_bng"></div>
+            <div id="clock_mos"></div>
+            <div id="clock_ber"></div>
+        </div>
+        <div style="clear: both;"></div>
+        </div>
+    </div>
+
+    <section id="emergency">
+    <div class="panel panel-danger">
+        <div class="panel-heading"><h3 class="panel-title"><strong>Current Emergencies</strong></h3></div>
+        <div class="panel-body">
+        
+        <div id="emer"></div>
+        
+        </div>
+        <div class="panel-footer"><small><em>The information is updated every 5 minutes. There is no need to reload the page.</em></small></div>
+    </div>
+    </section>
+    
+    <section id="shorttime">
+    <div class="panel panel-warning">
+        <div class="panel-heading"><h3 class="panel-title"><strong>Short time events</strong></h3></div>
+        <div class="panel-body">
+        
+        <div id="short"></div>
+    
+        </div>
+        <div class="panel-footer"><small><em>The information is updated every 5 minutes. There is no need to reload the page.</em></small></div>
+    </div>
+    </section>
+    
+    <section id="longtime">
+    <div class="panel panel-warning">
+        <div class="panel-heading"><h3 class="panel-title"><strong>Long time events</strong></h3></div>
+        <div class="panel-body">
+        
+        <div id="long"></div>
+        
+        </div>
+        <div class="panel-footer"><small><em>The information is updated every 5 minutes. There is no need to reload the page.</em></small></div>
+    </div>
+    </section>
+    <!--
+    <section id="birdflu">
+    <div class="panel panel-warning">
+        <div class="panel-heading"><h3 class="panel-title"><strong>Global Birdflu Monitor</strong></h3></div>
+        <div class="panel-body">
+        
+        <div id="ext1"></div>
+        
+        </div>
+        <div class="panel-footer"><small><em>The information is updated every 5 minutes. There is no need to reload the page.</em></small></div>
+    </div>
+    </section>
+    -->
+    <section id="earthquake"></section>
+    <div class="panel panel-info">
+        <div class="panel-heading"><h3 class="panel-title"><strong>Earthquake</strong></h3></div>
+        <div class="panel-body">
+        
+        <div id="eqReport"></div>
+        
+        </div>
+        <div class="panel-footer"><small><em>The information is updated every 5 minutes. There is no need to reload the page.</em></small></div>
+    </div>
+    
+    
+    <section id="tsu">
+    <div class="panel panel-info">
+        <div class="panel-heading"><h3 class="panel-title"><strong>Tsunami Information</strong></h3></div>
+        <div class="panel-body">
+        
+        <div id="tsunami"></div>
+        
+        </div>
+    <div class="panel-footer"><small><em>The information is updated every 5 minutes. There is no need to reload the page.</em></small></div>
+    </div>
+    </section>
+    
+    <section id="volcano">
+    <div class="panel panel-info">
+        <div class="panel-heading"><h3 class="panel-title"><strong>Volcano Activity Report</strong></h3></div>
+        <div class="panel-body">
+        
+        <div id="volcanoReport"></div>
+    
+        </div>
+    <div class="panel-footer"><small><em>The information is updated every 5 minutes. There is no need to reload the page.</em></small></div>
+    </div>
+    </section>
+    
+    <section id="tropstorm">
+    <div class="panel panel-info">
+        <div class="panel-heading"><h3 class="panel-title"><strong><strong>Active tropical storms</strong></strong></h3></div>
+        <div class="panel-body">
+        
+        <div id="tstorm"></div>
+    
+        </div>
+    <div class="panel-footer"><small><em>The information is updated every 5 minutes. There is no need to reload the page.</em></small></div>
+    </div>
+    </section>
+    
+    <section id="supv">
+    <div class="panel panel-info">
+        <div class="panel-heading"><h3 class="panel-title"><strong>Supervolcanoes Monitoring System</strong></h3></div>
+        <div class="panel-body">
+        
+        <div id="svolcano"></div>
+        
+        </div>
+    <div class="panel-footer"><small><em>"In the case of a supervolcano you could have complete collapse of civilisation around the world in the very worst case scenario. "Eruptions That Shook The World" - Dr Clive Oppenheimer"</em></small></div>
+    </div>
+    </section>
+    
+    <section id="neo">
+    <div class="panel panel-info">
+        <div class="panel-heading"><h3 class="panel-title"><strong>NASA NEO Earth Close Approaches</strong> <small>(objects that are known in the next 30 days)</small></h3></div>
+        <div class="panel-body">
+        
+        <div id="nasaneo"></div>
+        
+        </div>
+    <div class="panel-footer"><small><em>1 AU = ~150 million kilometers,1 LD = Lunar Distance = ~384,000 kilometers <strong>(Source: NASA-NEO | Realtime updated information)</strong></em></small></div>
+    </div>
+    </section>
+            
+</div>
+<footer class="footer-basic-centered">
+    <p class="footer-company-motto">We watch, We analyze, We notify</p>
+        <p class="footer-links">
+        <a href="../">Home</a>&nbsp;&nbsp;&nbsp;
+        <a target="_blank" href="https://www.facebook.com/RsoeEdis/">Facebook</a>&nbsp;&nbsp;&nbsp;
+        <a target="_blank" href="https://twitter.com/RSOE_EDIS">Twitter</a>&nbsp;&nbsp;&nbsp;
+        <a target="_blank" href="https://play.google.com/store/apps/details?id=org.rsoe.android.edis_pms">Google Play</a>&nbsp;&nbsp;&nbsp;
+        <a href="database/?pageid=about_us">About</a>&nbsp;&nbsp;&nbsp;
+        <a href="database/?pageid=about_contact">Contact</a>
+    </p>
+    <p class="footer-company-name">RSOE EDIS &copy; 2004-2019</p>
+</footer>
+<script type="text/javascript">
+var nanobar = new Nanobar({classname: 'nanobar'});
+
+$(document).ready(function(){
+
+    // InitMap Start ---------------------------------------------------------------------
+    var imagery = L.layerGroup();
+    L.esri.basemapLayer('Imagery').addTo(imagery);
+    L.esri.basemapLayer('ImageryLabels').addTo(imagery);
+
+    var map = L.map('maps', {
+        center: [-5.834616,124.145508],
+        zoom: 4,
+        zoomControl: true,
+        scrollWheelZoom: true,
+        layers: [imagery],
+        fullscreenControl: {
+            pseudoFullscreen: false
+        }
+    });
+
+    var baseLayers = {
+            "Satellite" : imagery,
+            "Streetmap" : L.esri.basemapLayer("Streets"),
+            "Terrain"   : L.esri.basemapLayer('Topographic')
+    };
+
+    L.control.layers(baseLayers).addTo(map);
+    L.control.scale().addTo(map);
+    L.control.scale('metric');
+
+    var t = L.terminator();
+    t.addTo(map);
+    setInterval(function(){updateTerminator(t)}, 60000);
+    function updateTerminator(t) {
+        var t2 = L.terminator();
+        t.setLatLngs(t2.getLatLngs());
+        t.redraw();
+        //console.log("Redraw Terminator...");
+    }
+
+    var miniMap = new L.Control.GlobeMiniMap({
+    land:'#BBBBBB',
+    water:'#DDDDDD',
+    marker:'#66FF00',
+    topojsonSrc: 'assets/js/world.json',
+    'title': 'Zoom to selected area. Please, click me.'
+    }).addTo(map);
+    L.Control.boxzoom({ position:'bottomleft' }).addTo(map);
+
+    var markers = new L.layerGroup();
+    // InitMap End -----------------------------------------------------------------------
+
+    
+    var track = new L.KML("assets/layer/usgs_fault_line2.kml", {async: true});
+    map.addLayer(track);
+    //markers.addLayer(track);
+    //map.addControl(new L.Control.Layers({}, {'Fault lines':track}));
+
+    // InitMarker - Start ----------------------------------------------------------------
+    var EQ1     = L.icon({iconUrl: 'icons/feher.gif',iconSize:[10, 10],iconAnchor:[7, 7]});
+    var EQ2     = L.icon({iconUrl: 'icons/kek.gif',iconSize:[10, 10],iconAnchor:[7, 7]});
+    var EQ3     = L.icon({iconUrl: 'icons/sarga.gif',iconSize:[10, 10],iconAnchor:[7, 7]});
+    var EQ4     = L.icon({iconUrl: 'icons/narancs.gif',iconSize:[10, 10],iconAnchor:[7, 7]});
+    var EQ5     = L.icon({iconUrl: 'icons/piros.gif',iconSize:[10, 10],iconAnchor:[7, 7]});
+    var DS_MG   = L.icon({iconUrl: 'icons/Civil_Rioting_ch_copy_sm.png',iconSize:[25, 25],iconAnchor:[22, 22]});
+    var DS_BH_EP = L.icon({iconUrl: 'icon2/biohazard1.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_BH_BH = L.icon({iconUrl: 'icon2/biohazard2.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_EX = L.icon({iconUrl: 'icon2/explosion.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_FL = L.icon({iconUrl: 'icon2/flood.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_TS = L.icon({iconUrl: 'icon2/tsunami.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_FF = L.icon({iconUrl: 'icon2/torrental_rain.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_EQ_M1 = L.icon({iconUrl: 'icon2/earthquake.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_EQ_M2 = L.icon({iconUrl: 'icon2/earthquake.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_EQ_M3 = L.icon({iconUrl: 'icon2/earthquake.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_EQ_M4 = L.icon({iconUrl: 'icon2/earthquake.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_EQ_M5 = L.icon({iconUrl: 'icon2/earthquake.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_HT = L.icon({iconUrl: 'icon2/heatwave.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_TC_TD = L.icon({iconUrl: 'icon2/storm_td.png',iconSize:[21, 22],iconAnchor:[10, 11]});
+var DS_TC_TC = L.icon({iconUrl: 'icon2/storm_ts.png',iconSize:[21, 22],iconAnchor:[10, 11]});
+var DS_TC_S1 = L.icon({iconUrl: 'icon2/storm1.png',iconSize:[21, 22],iconAnchor:[10, 11]});
+var DS_TC_S2 = L.icon({iconUrl: 'icon2/storm2.png',iconSize:[21, 22],iconAnchor:[10, 11]});
+var DS_TC_S3 = L.icon({iconUrl: 'icon2/storm3.png',iconSize:[21, 22],iconAnchor:[10, 11]});
+var DS_TC_S4 = L.icon({iconUrl: 'icon2/storm3.png',iconSize:[21, 22],iconAnchor:[10, 11]});
+var DS_TC_S5 = L.icon({iconUrl: 'icon2/storm5.png',iconSize:[21, 22],iconAnchor:[10, 11]});
+var DS_SNW = L.icon({iconUrl: 'icon2/blizzard.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_CW = L.icon({iconUrl: 'icon2/Hydro_Meteor_Drizzle.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_VI_AC = L.icon({iconUrl: 'icon2/vehicle_accident.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_VI_VO = L.icon({iconUrl: 'icon2/railway_accident.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_VI_SH = L.icon({iconUrl: 'icon2/ship_accident.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_VI_ARP = L.icon({iconUrl: 'icon2/airplan_accident.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_TO_F0 = L.icon({iconUrl: 'icon2/tornado.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_TO_F2 = L.icon({iconUrl: 'icon2/tornado.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_FR = L.icon({iconUrl: 'icon2/tuz.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_VA = L.icon({iconUrl: 'icon2/vulano_threat.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_VE = L.icon({iconUrl: 'icon2/vulano_eruption.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_ST = L.icon({iconUrl: 'icon2/severe_weather.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_NC = L.icon({iconUrl: 'icon2/nuclear_accident.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_PW = L.icon({iconUrl: 'icon2/powerout.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_FLI = L.icon({iconUrl: 'icon2/Inland_Water_small.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_EC = L.icon({iconUrl: 'icon2/severe_weather.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_AC = L.icon({iconUrl: 'icon2/technological_disaster.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_AV = L.icon({iconUrl: 'icon2/avalanche.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_BH_EH = L.icon({iconUrl: 'icon2/epidemic.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_VW = L.icon({iconUrl: 'icon2/terror.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_CC = L.icon({iconUrl: 'icon2/climate_changes.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_WF = L.icon({iconUrl: 'icon2/wildfire.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_LS = L.icon({iconUrl: 'icon2/avalanche.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_BH_5A = L.icon({iconUrl: 'icon2/birdflu1.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_CA = L.icon({iconUrl: 'icon2/chemical_accident2.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_HS = L.icon({iconUrl: 'icon2/hailstorm.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_BH_HO = L.icon({iconUrl: 'icon2/locust.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_BH_5H = L.icon({iconUrl: 'icon2/birdflu2.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_COR = L.icon({iconUrl: 'icon2/extraan.gif',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_HAB = L.icon({iconUrl: 'icon2/alga_25x25.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_GW = L.icon({iconUrl: 'icon2/tsunami.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_DR = L.icon({iconUrl: 'icon2/drught.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_LUC = L.icon({iconUrl: 'icon2/locust.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_HZ = L.icon({iconUrl: 'icon2/chemical_accident2.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_SL = L.icon({iconUrl: 'icon2/flood.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_CR = L.icon({iconUrl: 'icon2/nuclear_accident.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DC_SE = L.icon({iconUrl: 'icon2/tsunami.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DC_CE = L.icon({iconUrl: 'icon2/extraan.gif',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_VIV = L.icon({iconUrl: 'icon2/vehicle_incident.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_VIS = L.icon({iconUrl: 'icon2/ship_incident.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_VIT = L.icon({iconUrl: 'icon2/railway_incident.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_VIA = L.icon({iconUrl: 'icon2/airplan_incident.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_CO = L.icon({iconUrl: 'icon2/cosmic_event.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_UEV = L.icon({iconUrl: 'icon2/noncateg.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_ENP = L.icon({iconUrl: 'icon2/chemical_accident2.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_JEL = L.icon({iconUrl: 'icon2/incident_jellyfish.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_SHA = L.icon({iconUrl: 'icon2/incident_shark.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_UGE = L.icon({iconUrl: 'icon2/seism.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_MG = L.icon({iconUrl: 'icon2/Civil_Rioting_ch_copy_sm.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_BLZ = L.icon({iconUrl: 'icon2/blizzard.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_CID = L.icon({iconUrl: 'icon2/cid.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+var DS_SPS = L.icon({iconUrl: 'icon2/spse.png',iconSize:[20, 20],iconAnchor:[17, 17]});
+
+    // InitMarker - End ------------------------------------------------------------------
+    function loadEqData(){
+        $.ajax({
+            type: "GET",
+            url: "database/mapData/map_eq.json",
+            success: function(data)
+            {
+                for (var i = 0; i < data.length; i++)
+                {
+                    var item        = data[i];
+                    var latitude    = item.lat;
+                    var longitude   = item.lon;
+                    var html        = item.hbox;
+                    var icons       = item.wcode;
+
+                    var latlng = L.latLng(latitude,longitude);
+                    var marker = L.marker(latlng, {icon: eval(icons)}).bindPopup(html);
+
+                    markers.addLayer(marker);
+                }
+            }
+        });
+    }
+
+    function loadEvents(){
+        var eventLayer = L.Util.ajax("database/mapData/map_event.json").then(function(data){
+            for (var i = 0; i < data.length; i++)
+            {
+                var item        = data[i];
+                var latitude    = item.lat;
+                var longitude   = item.lon;
+                var html        = item.hbox;
+                var icons       = item.wcode;
+                var lastEvent   = item.lastEvent;
+
+                //console.log(lastEvent + '|' + icons + '|' + html + '|' + latitude + ',' + longitude);
+                var latlng = L.latLng(latitude,longitude);
+                var marker = L.marker(latlng, {icon: eval(icons)}).bindPopup(html);
+                markers.addLayer(marker);
+            }
+        });
+    }
+
+    function loadAffectedArea(){
+        var eventAffectedLayer = L.Util.ajax("database/mapData/map_event_affected.json").then(function(data){
+        for (var i = 0; i < data.length; i++)
+        {
+            var item        = data[i];
+            var latitude    = item.lat;
+            var longitude   = item.lon;
+            var html        = item.hbox;
+            var icons       = item.wcode;
+
+            var latlng = L.latLng(latitude,longitude);
+            var marker = L.marker(latlng, {icon: eval(icons)}).bindPopup(html);
+
+            markers.addLayer(marker);
+        }
+    });
+
+    }
+
+    function loadTropStormData(){
+        var tropicalStormLayer = L.Util.ajax("database/mapData/map_tropstorm.json").then(function(data){
+        for (var i = 0; i < data.length; i++)
+        {
+            var item        = data[i];
+            var latitude    = item.posLat;
+            var longitude   = item.posLon;
+            var html        = item.htmlBox;
+            var icons       = item.wcode;
+            var pastT       = item.pastTrack;
+            var foreT       = item.forecastTrack;
+
+            var latlng = L.latLng(latitude,longitude);
+            var marker = L.marker(latlng, {icon: eval(icons)}).bindPopup(html);
+
+            markers.addLayer(marker);
+
+            var circle100 = L.circle([latitude, longitude], {color: 'red',fillColor: '#f03',fillOpacity: 0.2,radius: 100000,weight: 1}).addTo(map);
+            var circle250 = L.circle([latitude, longitude], {color: 'yellow',fillColor: '#FFF93D',fillOpacity: 0.2,radius: 250000,weight: 1}).addTo(map);
+            var circle600 = L.circle([latitude, longitude], {color: 'white',fillColor: '#FFFFFF',fillOpacity: 0.2,radius: 600000,weight: 1}).addTo(map);
+            var pastTrackLine = L.Polyline.fromEncoded(pastT, {weight: 2,color: '#66CC00'}).addTo(map);
+            var forecastTrackLine = L.Polyline.fromEncoded(foreT, {weight: 2,color: '#FF3300'}).addTo(map);
+
+            markers.addLayer(circle100);
+            markers.addLayer(circle250);
+            markers.addLayer(circle600);
+            markers.addLayer(pastTrackLine);
+            markers.addLayer(forecastTrackLine);
+        }
+    });
+
+    }
+
+    
+    // Add all layer to Map
+    map.addLayer(markers);
+    // Add all layer to Map
+
+    // Load First
+    <!-- Updater start -->
+/*
+    loadEqData();
+    loadEvents();
+    loadAffectedArea();
+    loadTropStormData();
+    
+    var step = 0;
+    var nScale = 0;
+
+    var refreshTimer = "1000";
+    var autoLoad = setInterval(
+        function ()
+        {
+        step++;
+        nanobar.go(nScale);
+        nScale+=0.4;
+
+        if(step<310){}
+        else
+        {
+            console.log('refresh');
+            markers.clearLayers();
+            loadEqData();
+            loadEvents();
+            loadAffectedArea();
+            loadTropStormData();
+
+                        step = 0;
+            nScale = 0;
+        }
+        },refreshTimer);
+
+*/
+    loadEqData();
+    loadEvents();
+    loadAffectedArea();
+    loadTropStormData();
+
+    
+    var refreshTimer = "300000";
+    var autoLoad = setInterval(
+    function ()
+    {
+        markers.clearLayers();
+        loadEqData();
+        loadEvents();
+        loadAffectedArea();
+        loadTropStormData();
+
+                //console.log('refresh');
+    },refreshTimer);
+    <!-- Updater end -->
+
+    <!-- End of Maps -->
+    var url = window.location;
+    $('ul.nav a[href="' + url + '"]').parent().addClass('active');
+    $('ul.nav a').filter(function ()
+        {
+        return this.href == url;
+        }).parent().addClass('active').parent().parent().addClass('active');var url = window.location;
+    $('ul.nav a[href="' + url + '"]').parent().addClass('active');
+    $('ul.nav a').filter(function ()
+        {
+        return this.href == url;
+        }).parent().addClass('active').parent().parent().addClass('active');
+    })
+</script>
+<script src="database/js/bootstrap.min.js"></script>
+<script src="database/js/ie10-viewport-bug-workaround.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script src="database/js/toaster.settings.js"></script>
+<script type="text/javascript" src="database/js/edis.push.js"></script>
+<script type="text/javascript" src="database/js/edis.tables.js"></script>
+<script src="assets/js/jquery.rotate.js"></script>
+<script src="assets/js/jClocksGMT.js"></script>
+<link rel="stylesheet" href="assets/css/jClocksGMT.css">
+
+<script>
+$(document).ready(function(){
+    $('#clock_hou').jClocksGMT({ title: 'GMT', offset: '0', skin: 1,digital: true, analog: false,timeformat: 'HH:mm:ss',dst:true, date: true,dateformat: 'MM/DD/YYYY' });
+    $('#clock_ny').jClocksGMT({ title: 'Eastern US', offset: '-5', skin: 1,digital: true, analog: false,timeformat: 'HH:mm:ss',dst:true, date: true,dateformat: 'MM/DD/YYYY'});
+    $('#clock_cus').jClocksGMT({ title: 'Central US', offset: '-6', skin: 1,digital: true, analog: false,timeformat: 'HH:mm:ss',dst:true, date: true,dateformat: 'MM/DD/YYYY' });
+    $('#clock_pus').jClocksGMT({ title: 'Pacific US', offset: '-8', skin: 1,digital: true, analog: false,timeformat: 'HH:mm:ss',dst:true, date: true,dateformat: 'MM/DD/YYYY' });
+    $('#clock_pac').jClocksGMT({ title: 'Hawaii', offset: '-10', skin: 1,digital: true, analog: false,timeformat: 'HH:mm:ss',dst:true, date: true,dateformat: 'MM/DD/YYYY' });
+    $('#clock_fij').jClocksGMT({ title: 'Fiji', offset: '-12', skin: 1,digital: true, analog: false,timeformat: 'HH:mm:ss',dst:true, date: true,dateformat: 'MM/DD/YYYY' });
+    $('#clock_syd').jClocksGMT({ title: 'Sydney', offset: '+10', skin: 1,digital: true, analog: false,timeformat: 'HH:mm:ss',dst:true, date: true,dateformat: 'MM/DD/YYYY' });
+    $('#clock_ty').jClocksGMT({ title: 'Tokyo', offset: '+9', skin: 1,digital: true, analog: false,timeformat: 'HH:mm:ss',dst:true, date: true,dateformat: 'MM/DD/YYYY' });
+    $('#clock_hgk').jClocksGMT({ title: 'Hong Kong', offset: '+8', skin: 1,digital: true, analog: false,timeformat: 'HH:mm:ss',dst:true, date: true,dateformat: 'MM/DD/YYYY' });
+    $('#clock_bng').jClocksGMT({ title: 'Bangkok', offset: '+7', skin: 1,digital: true, analog: false,timeformat: 'HH:mm:ss',dst:true, date: true,dateformat: 'MM/DD/YYYY' });
+    $('#clock_abd').jClocksGMT({ title: 'Islamabad', offset: '+5', skin: 1,digital: true, analog: false,timeformat: 'HH:mm:ss',dst:true, date: true,dateformat: 'MM/DD/YYYY' });
+    $('#clock_mos').jClocksGMT({ title: 'Moscow', offset: '+3', skin: 1,digital: true, analog: false,timeformat: 'HH:mm:ss',dst:true, date: true,dateformat: 'MM/DD/YYYY' });
+    $('#clock_ber').jClocksGMT({ title: 'Berlin', offset: '+1', skin: 1,digital: true, analog: false,timeformat: 'HH:mm:ss',dst:true, date: true,dateformat: 'MM/DD/YYYY' });
+})
+
+function hideAddressBar()
+{
+    if(!window.location.hash)
+    {
+        if(document.height <= window.outerHeight + 10)
+        {
+            document.body.style.height = (window.outerHeight + 50) +'px';
+            setTimeout( function(){ window.scrollTo(0, 1); }, 50 );
+        }
+        else
+        {
+            setTimeout( function(){ window.scrollTo(0, 1); }, 0 );
+        }
+    }
+}
+
+window.addEventListener("load", hideAddressBar );
+window.addEventListener("orientationchange", hideAddressBar );
+
+$("#promo-notifications").hide();
+</script>
+</body>
+</html>

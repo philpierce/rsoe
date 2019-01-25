@@ -1,0 +1,725 @@
+<!-- Unchanged -->
+  
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <title>RSOE EDIS</title>
+    <!-- HTML Meata start -->
+    <meta name="description" content="Welcome to the RSOE Emergency and Disaster Information Service (EDIS) website. The page shows the disaster and emergency events that occurred on Earth in near real time."/>
+    <meta name="keywords" content="emergency, disaster, monitoring, interactive, disaster map, earthquake, landslide, tsunami, volcano, supervolcano, epidemic, epidemic hazard, biology hazard, terror attack, accident, incident, tropical storm, severe weather, tornado, hurricane, hailstorm, inidentified hazard" />
+    <meta name="author" content="Zsolt Boszormenyi - hunnomad@gmail.com">
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate, post-check=0, pre-check=0">
+    <meta http-equiv="expires" content="Sat, 31 Oct 2014 00:00:00 GMT">
+    <meta http-equiv="pragma" content="no-cache">
+    <!-- HTML Meata end -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/bootstrap.custom.style.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/normalize.css"/>
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+        <link href="css/login_form.css" rel="stylesheet"/>
+    <script src="https://www.google.com/recaptcha/api.js?hl=en" async defer></script>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:400,300,700italic,700,500&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="assets/js/bootstrap-tabcollapse.js"></script>
+    <link href="assets/css/m-styles.min.css" rel="stylesheet"/> 
+    <link href="assets/css/m-buttons.min.css" rel="stylesheet"/>
+    <style type="text/css">
+	 #map {
+		width:100%;
+		height:280px;
+		display:block;
+	 }
+	.google-map-canvas,
+	.google-map-canvas * { .box-sizing(content-box); }
+	img { max-width: none; }
+	@media (max-width: 768px) {
+		
+		.nav-tabs.nav-justified > li{
+			float:left;
+		}
+	}
+    
+    select option {
+	   color: black;
+    }
+    select option:first-child {
+	   color: grey;
+    }
+    select.empty {
+	   color: grey;
+    }
+    /* Hidden placeholder */
+    select option[disabled]:first-child {
+	   display: none;
+    }
+    .navbar .divider-vertical {
+        height: 50px;
+        margin: 0 9px;
+        border-right: 1px solid #ffffff;
+        border-left: 1px solid #f2f2f2;
+    }
+
+    .navbar-inverse .divider-vertical {
+        border-right-color: #222222;
+        border-left-color: #111111;
+    }
+
+    @media (max-width: 767px) {
+        .navbar-collapse .nav > .divider-vertical {
+            display: none;
+         }
+    }
+    </style>
+    <script type="text/javascript">
+    var RecaptchaOptions = {
+        theme : 'white',
+        lang : 'en'
+    };
+    </script>
+    
+    <!-- jRange -->
+    <link rel="stylesheet" href="assets/css/jquery.range.css">
+    <script src="assets/js/jquery.range.js"></script>
+    <!-- jRange -->
+    
+        
+    <meta property="fb:app_id" content="110175609020919" />    
+    <meta property="og:title" content="RSOE EDIS" />
+    <meta property="og:site_name" content="RSOE EDIS"/>
+    <meta property="og:url" content="http://hisz.rsoe.hu/alertmap/database/index.php?pageid=ris_registration" />
+    <meta property="og:description" content="Welcome to the RSOE Emergency and Disaster Information Service (EDIS) website. The page shows the disaster and emergency events that occurred on Earth in near real time."/>
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+
+    <link rel="alternate" type="application/rss+xml" title="Emergency and Disaster Information" href="http://feeds.feedburner.com/RsoeEdis-EmergencyAndDisasterInformation?format=xml" />
+<link rel="alternate" type="application/rss+xml" title="Epidemic and Biology Hazard Warning Message" href="http://feeds.feedburner.com/RsoeEdis-Ebhwm?format=xml" />
+<link rel="alternate" type="application/rss+xml" title="Tsunami Information" href="http://feeds.feedburner.com/RsoeEdis-TsunamiInformation?format=xml" />
+<link rel="alternate" type="application/rss+xml" title="UV Index in the USA" href="http://feeds.feedburner.com/RsoeEdis-UvIndexInTheUsa?format=xml" />
+<link rel="alternate" type="application/rss+xml" title="Earth Approaching Objects (NASA NEO)" href="http://feeds.feedburner.com/RsoeEdis-EarthApproachingObjects" />
+<link rel="alternate" type="application/rss+xml" title="Global Earthquake Report > M 2.4	" href="http://feeds.feedburner.com/RsoeEdis-EarthquakeReportM25?format=xml" />    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="css/custom.css"/>
+    <script src="js/pushstream.js" type="text/javascript" charset="utf-8"></script>
+    <!-- Toastmessage -->
+    <link href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" type="text/css" />
+    <script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-253842-1', 'auto');
+  ga('send', 'pageview');
+
+</script>    <link rel="stylesheet" href="css/font-awesome-animation.min.css"/>
+    
+    <!-- Choosen -->
+    <script src="assets/js/chosen.jquery.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="assets/css/chosen.min.css">
+    <!-- Choosen -->
+    
+    <!-- FORM Validator -->    
+    <script src="assets/js/validator.min.js" type="text/javascript" charset="utf-8"></script>
+    <!-- FORM Validator -->
+    
+    <!-- Switch -->
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+    <!-- Switch -->
+
+    <!-- jQuery color - animate -->
+    <script src="js/jquery.color.js"></script>
+    <script src="js/jquery.color.svg-names.js"></script>
+    <!-- jQuery color - animate -->
+
+    <!-- Maps settings -->
+    <link rel="stylesheet" href="../assets/css/leaflet.css"/>
+    <script src="../assets/js/leaflet.js"></script>
+    <script src="../assets/js/L.Terminator.js"></script>
+    <script src="../assets/js/esri-leaflet.js" crossorigin=""></script>
+    <script src="../assets/js/L.Icon.Pulse.js"></script>
+    <link rel="stylesheet" href="../assets/css/L.Icon.Pulse.css"/>
+    <script src="../assets/js/KML.js"></script>
+    <script src="../assets/js/leaflet.ajax.min.js"></script>
+    <script src="../assets/js/leaflet-layerjson.js"></script>
+    <script src="../assets/js/SliderControl.js"></script>
+    <script src="../assets/js/leaflet-liveupdate.js"></script>
+    <link rel="stylesheet" href="../assets/css/leaflet-liveupdate.css"/>
+    <script src="../assets/js/Polyline.encoded.js"></script>
+    <!-- Maps settings -->
+    </head>
+    <body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.9&appId=110175609020919";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">RSOE EDIS</a>
+        </div>
+                  
+          </ul>
+
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                        </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+<div style="margin-top: 80px;"></div>
+<div class="container-fluid">
+<script type="text/javascript">
+    var RecaptchaOptions = {
+        theme : 'white',
+        lang : 'en'
+    };
+</script>
+<div id="login-overlay" class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h3>RSOE EDIS - Rapid Information System</h3>
+              <h4 class="modal-title" id="myModalLabel"><small style="color: red;">This service is available only to government, international organizations, military service and non-governmental organizations. <strong>The accepted email domains:</strong> .gov, .org, .mil and .int.</small></h4>
+            </div>
+          
+            <div class="modal-body">
+              
+            
+                <form id="form1" method="POST" action="cmd/cmd_premium_registration.php">
+                        <div class="form-group">
+                        <div class="col-xs-12">
+                        <label for="InputName">First Name</label>
+                        <div class="input-group">
+                        <input type="text" id="first_name" class="form-control" name="first_name" placeholder="Enter your first name" tabindex="1" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                        </div>
+                        <br />
+                        </div>
+                        </div>
+                    
+                        <div class="form-group">
+                        <div class="col-xs-12">
+
+                        <label for="InputName">Last Name</label>
+                        <div class="input-group">
+                        <input type="text" class="form-control" name="last_name" placeholder="Enter your last name" tabindex="2" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                        </div>
+                        <br />
+                        </div>       
+                        </div>
+                        
+                        <div class="form-group">
+                        <div class="col-xs-12">
+
+                        <label for="InputName">Username</label>
+                        <div class="input-group">
+                        <input type="text" class="form-control" id="username" name="user_name" min="5" placeholder="Enter your username" tabindex="2" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                        </div>
+                        <span id="user-availability-status"></span> 
+                        <br />
+                        </div>
+                        </div>
+                    
+                    <div class="form-group"> 
+                        <div class="col-xs-12">
+                        <label for="InputEmail">Email</label>
+                        <div class="input-group">
+                        <input type="email" class="form-control error" id="email" name="email" placeholder="Enter your valied email address" tabindex="3" required/>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                    </div>
+                    <br>
+                     </div>
+                 </div>
+                 
+                 <br>
+                 <div class="form-group">
+                        <div class="col-xs-12">
+                        <label for="InputStreetName">Name of Organisation</label>
+                        <div class="input-group">
+                        <input type="text" class="form-control" name="organisation" placeholder="Please add your organisation's name" tabindex="4" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                        </div>
+                        <br> 
+                    </div>                     
+                </div>
+
+                 <div class="form-group">
+                        <div class="col-xs-12">
+                        <label for="InputStreetName">Operational area</label>
+                        <div class="input-group">
+                        <select data-placeholder="Please select your organisation's operational area" name="organization_type_id" id="organization_type_id" class="chosen-select" tabindex="5" style="min-width: 100% !important;">
+                        <option></option>
+                        <option value='1'>Military</option><option value='2'>Medical, public health and disease control</option><option value='3'>Law enforcement, military,homeland and local/private security</option><option value='4'>Geophysical service</option><option value='5'>Meteorological service</option><option value='6'>General emergency and public service</option><option value='7'>Rescue and recovery service</option><option value='8'>Fire suppression and rescue service</option><option value='9'>Pollution and other environmental service</option><option value='10'>Public and private transportation service</option><option value='11'>Utility, telecommunication, other non-transport infrastructure</option><option value='12'>Chemical, Biological, Radiological, Nuclear or High-Yield Explosive threat or attack</option><option value='13'>Monitoring Service</option><option value='14'>Other</option>                        </select>
+                        </div>
+                        <br> 
+                    </div>                     
+                </div>
+                
+                 <div class="form-group">
+                        <div class="col-xs-12">
+                        <label for="InputStreetName">Country</label>
+                        <div class="input-group">
+                        <select data-placeholder="Please select your country" name="country_code" id="country_code" class="chosen-select" tabindex="5" style="min-width: 100% !important;">
+                        <option></option>
+                        <optgroup label='Africa'>
+<option value='DZA|Algeria'>Algeria</option>
+<option value='AGO|Angola'>Angola</option>
+<option value='BEN|Benin'>Benin</option>
+<option value='BWA|Botswana'>Botswana</option>
+<option value='BFA|Burkina Faso'>Burkina Faso</option>
+<option value='BDI|Burundi'>Burundi</option>
+<option value='CMR|Cameroon'>Cameroon</option>
+<option value='CAF|Central African Republic'>Central African Republic</option>
+<option value='TCD|Chad'>Chad</option>
+<option value='COD|Congo'>Congo</option>
+<option value='CIV|Cote dIvoire'>Cote dIvoire</option>
+<option value='COG|Democratic Republic of the Congo'>Democratic Republic of the Congo</option>
+<option value='DJI|Djibouti'>Djibouti</option>
+<option value='EGY|Egypt'>Egypt</option>
+<option value='GNQ|Equatorial Guinea'>Equatorial Guinea</option>
+<option value='ERI|Eritrea'>Eritrea</option>
+<option value='ETH|Ethiopia'>Ethiopia</option>
+<option value='GAB|Gabon'>Gabon</option>
+<option value='GMB|Gambia'>Gambia</option>
+<option value='GHA|Ghana'>Ghana</option>
+<option value='GIN|Guinea'>Guinea</option>
+<option value='GNB|Guinea-Bissau'>Guinea-Bissau</option>
+<option value='KEN|Kenya'>Kenya</option>
+<option value='LSO|Lesotho'>Lesotho</option>
+<option value='LBR|Liberia'>Liberia</option>
+<option value='LBY|Libya'>Libya</option>
+<option value='MWI|Malawi'>Malawi</option>
+<option value='MLI|Mali'>Mali</option>
+<option value='MRT|Mauritania'>Mauritania</option>
+<option value='MAR|Morocco'>Morocco</option>
+<option value='MOZ|Mozambique'>Mozambique</option>
+<option value='NAM|Namibia'>Namibia</option>
+<option value='NER|Niger'>Niger</option>
+<option value='NGA|Nigeria'>Nigeria</option>
+<option value='OMN|Oman'>Oman</option>
+<option value='RWA|Rwanda'>Rwanda</option>
+<option value='STP|Sao Tomé and Príncipe'>Sao Tomé and Príncipe</option>
+<option value='SEN|Senegal'>Senegal</option>
+<option value='SLE|Sierra Leone'>Sierra Leone</option>
+<option value='SOM|Somalia'>Somalia</option>
+<option value='ZAF|South Africa'>South Africa</option>
+<option value='SSD|South Sudan'>South Sudan</option>
+<option value='SDN|Sudan'>Sudan</option>
+<option value='SWZ|Swaziland'>Swaziland</option>
+<option value='TZA|Tanzania'>Tanzania</option>
+<option value='TGO|Togo'>Togo</option>
+<option value='TUN|Tunisia'>Tunisia</option>
+<option value='UGA|Uganda'>Uganda</option>
+<option value='ESH|Western Sahara'>Western Sahara</option>
+<option value='ZMB|Zambia'>Zambia</option>
+<option value='ZWE|Zimbabwe'>Zimbabwe</option>
+<optgroup>
+<optgroup label='Asia'>
+<option value='AFG|Afghanistan'>Afghanistan</option>
+<option value='ARM|Armenia'>Armenia</option>
+<option value='AZE|Azerbaijan'>Azerbaijan</option>
+<option value='BGD|Bangladesh'>Bangladesh</option>
+<option value='BTN|Bhutan'>Bhutan</option>
+<option value='KHM|Cambodia'>Cambodia</option>
+<option value='CHN|China'>China</option>
+<option value='GEO|Georgia'>Georgia</option>
+<option value='HKG|Hong Kong (China)'>Hong Kong (China)</option>
+<option value='IND|India'>India</option>
+<option value='JPN|Japan'>Japan</option>
+<option value='KAZ|Kazakhstan'>Kazakhstan</option>
+<option value='KGZ|Kyrgyzstan'>Kyrgyzstan</option>
+<option value='LAO|Laos'>Laos</option>
+<option value='MAC|Macau'>Macau</option>
+<option value='MNG|Mongolia'>Mongolia</option>
+<option value='MMR|Myanmar (Burma)'>Myanmar (Burma)</option>
+<option value='NPL|Nepal'>Nepal</option>
+<option value='PRK|North Korea'>North Korea</option>
+<option value='PAK|Pakistan'>Pakistan</option>
+<option value='RUS|Russia'>Russia</option>
+<option value='SGP|Singapore'>Singapore</option>
+<option value='KOR|South Korea'>South Korea</option>
+<option value='LKA|Sri Lanka'>Sri Lanka</option>
+<option value='TWN|Taiwan'>Taiwan</option>
+<option value='TJK|Tajikistan'>Tajikistan</option>
+<option value='THA|Thailand'>Thailand</option>
+<option value='TUR|Turkey'>Turkey</option>
+<option value='TKM|Turkmenistan'>Turkmenistan</option>
+<option value='UZB|Uzbekistan'>Uzbekistan</option>
+<option value='VNM|Vietnam'>Vietnam</option>
+<optgroup>
+<optgroup label='Atlantic Ocean - Middle'>
+<optgroup>
+<optgroup label='Atlantic Ocean - North'>
+<option value='AZR|Azori Islands (Port.)'>Azori Islands (Port.)</option>
+<option value='BMU|Bermuda'>Bermuda</option>
+<option value='BVT|Bouvet Island'>Bouvet Island</option>
+<option value='SPI|Canary-Islands (Esp.)'>Canary-Islands (Esp.)</option>
+<option value='CPV|Cape Verde'>Cape Verde</option>
+<option value='GRL|Greenland'>Greenland</option>
+<option value='SPM|Saint Pierre and Miquelon'>Saint Pierre and Miquelon</option>
+<option value='GS|Sandwich Islands'>Sandwich Islands</option>
+<option value='BHS|The Bahamas'>The Bahamas</option>
+<optgroup>
+<optgroup label='Atlantic Ocean - South'>
+<option value='SHN|Saint Helena'>Saint Helena</option>
+<optgroup>
+<optgroup label='Australia - New-Zealand'>
+<option value='AUS|Australia'>Australia</option>
+<option value='NZL|New Zealand'>New Zealand</option>
+<optgroup>
+<optgroup label='Caribean Sea'>
+<option value='AIA|Anguilla'>Anguilla</option>
+<option value='ATG|Antigua and Barbuda'>Antigua and Barbuda</option>
+<option value='ABW|Aruba'>Aruba</option>
+<option value='BRB|Barbados'>Barbados</option>
+<option value='VGB|British Virgin Islands'>British Virgin Islands</option>
+<option value='CYM|Cayman Islands'>Cayman Islands</option>
+<option value='CUB|Cuba'>Cuba</option>
+<option value='CUW|Curacao'>Curacao</option>
+<option value='DMA|Dominica'>Dominica</option>
+<option value='DOM|Dominican Republic'>Dominican Republic</option>
+<option value='GRD|Grenada'>Grenada</option>
+<option value='GLP|Guadeloupe'>Guadeloupe</option>
+<option value='HTI|Haiti'>Haiti</option>
+<option value='JAM|Jamaica'>Jamaica</option>
+<option value='MTQ|Martinique'>Martinique</option>
+<option value='MSR|Montserrat'>Montserrat</option>
+<option value='ANT|Netherlands Antilles'>Netherlands Antilles</option>
+<option value='PRI|Puerto Rico'>Puerto Rico</option>
+<option value='KNA|Saint Kitts and Nevis'>Saint Kitts and Nevis</option>
+<option value='LCA|Saint Lucia'>Saint Lucia</option>
+<option value='VCT|Saint Vincent and the Grenadines'>Saint Vincent and the Grenadines</option>
+<option value='SXM|Sint Maarten'>Sint Maarten</option>
+<option value='TTO|Trinidad and Tobago'>Trinidad and Tobago</option>
+<option value='TCA|Turks and Caicos Islands'>Turks and Caicos Islands</option>
+<option value='VIR|US Virgin Islands'>US Virgin Islands</option>
+<optgroup>
+<optgroup label='Central-America'>
+<option value='BLZ|Belize'>Belize</option>
+<option value='CRI|Costa Rica'>Costa Rica</option>
+<option value='SLV|El Salvador'>El Salvador</option>
+<option value='GTM|Guatemala'>Guatemala</option>
+<option value='HND|Honduras'>Honduras</option>
+<option value='NIC|Nicaragua'>Nicaragua</option>
+<option value='PAN|Panama'>Panama</option>
+<optgroup>
+<optgroup label='Europe'>
+<option value='ALA|Aland Islands'>Aland Islands</option>
+<option value='ALB|Albania'>Albania</option>
+<option value='AND|Andorra'>Andorra</option>
+<option value='AUT|Austria'>Austria</option>
+<option value='BLR|Belarus'>Belarus</option>
+<option value='BEL|Belgium'>Belgium</option>
+<option value='BIH|Bosnia and Herzegovina'>Bosnia and Herzegovina</option>
+<option value='BGR|Bulgaria'>Bulgaria</option>
+<option value='HRV|Croatia'>Croatia</option>
+<option value='CYP|Cyprus'>Cyprus</option>
+<option value='CZE|Czech Republic'>Czech Republic</option>
+<option value='DNK|Denmark'>Denmark</option>
+<option value='EST|Estonia'>Estonia</option>
+<option value='FRO|Faeroe Islands'>Faeroe Islands</option>
+<option value='FIN|Finland'>Finland</option>
+<option value='FRA|France'>France</option>
+<option value='DEU|Germany'>Germany</option>
+<option value='GIB|Gibraltar'>Gibraltar</option>
+<option value='GRC|Greece'>Greece</option>
+<option value='GGY|Guernsey'>Guernsey</option>
+<option value='HUN|Hungary'>Hungary</option>
+<option value='ISL|Iceland'>Iceland</option>
+<option value='IRL|Ireland'>Ireland</option>
+<option value='IMN|Isle of Man'>Isle of Man</option>
+<option value='ITA|Italy'>Italy</option>
+<option value='KOS|Kosovo'>Kosovo</option>
+<option value='LVA|Latvia'>Latvia</option>
+<option value='LIE|Liechtenstein'>Liechtenstein</option>
+<option value='LTU|Lithuania'>Lithuania</option>
+<option value='LUX|Luxembourg'>Luxembourg</option>
+<option value='MKD|Macedonia'>Macedonia</option>
+<option value='MLT|Malta'>Malta</option>
+<option value='MDA|Moldova'>Moldova</option>
+<option value='MCO|Monaco'>Monaco</option>
+<option value='MNE|Montenegro'>Montenegro</option>
+<option value='NLD|Netherlands'>Netherlands</option>
+<option value='NOR|Norway'>Norway</option>
+<option value='POL|Poland'>Poland</option>
+<option value='PRT|Portugal'>Portugal</option>
+<option value='ROU|Romania'>Romania</option>
+<option value='SMR|San Marino'>San Marino</option>
+<option value='SRB|Serbia'>Serbia</option>
+<option value='SVK|Slovakia'>Slovakia</option>
+<option value='SVN|Slovenia'>Slovenia</option>
+<option value='ESP|Spain'>Spain</option>
+<option value='SWE|Sweden'>Sweden</option>
+<option value='CHE|Switzerland'>Switzerland</option>
+<option value='UKR|Ukraine'>Ukraine</option>
+<option value='GBR|United Kingdom'>United Kingdom</option>
+<option value='VAT|Vatican City'>Vatican City</option>
+<optgroup>
+<optgroup label='Far-East'>
+<optgroup>
+<optgroup label='Indian Ocean'>
+<option value='IOT|British Indian Ocean Territory'>British Indian Ocean Territory</option>
+<option value='CXR|Christmas Island'>Christmas Island</option>
+<option value='CCK|Cocos (Keeling) Islands'>Cocos (Keeling) Islands</option>
+<option value='COM|Comoros'>Comoros</option>
+<option value='KMR|Grande Comore'>Grande Comore</option>
+<option value='MDG|Madagascar'>Madagascar</option>
+<option value='MDV|Maldives'>Maldives</option>
+<option value='MUS|Mauritius'>Mauritius</option>
+<option value='MYT|Mayotte'>Mayotte</option>
+<option value='REU|Reunion'>Reunion</option>
+<option value='SYC|Seychelles'>Seychelles</option>
+<optgroup>
+<optgroup label='Indonesian Archipelago'>
+<option value='PHB|Basilan Islands'>Basilan Islands</option>
+<option value='BRN|Brunei'>Brunei</option>
+<option value='TLS|East Timor'>East Timor</option>
+<option value='IDN|Indonesia'>Indonesia</option>
+<option value='MYS|Malaysia'>Malaysia</option>
+<option value='PNG|Papua New Guinea'>Papua New Guinea</option>
+<optgroup>
+<optgroup label='Middle-East'>
+<option value='BHR|Bahrain'>Bahrain</option>
+<option value='IRN|Iran'>Iran</option>
+<option value='IRQ|Iraq'>Iraq</option>
+<option value='ISR|Israel'>Israel</option>
+<option value='JOR|Jordan'>Jordan</option>
+<option value='KWT|Kuwait'>Kuwait</option>
+<option value='LBN|Lebanon'>Lebanon</option>
+<option value='PSE|Palestinian Territory'>Palestinian Territory</option>
+<option value='QAT|Qatar'>Qatar</option>
+<option value='SAU|Saudi Arabia'>Saudi Arabia</option>
+<option value='SYR|Syria'>Syria</option>
+<option value='ARE|United Arab Emirates'>United Arab Emirates</option>
+<option value='YEM|Yemen'>Yemen</option>
+<optgroup>
+<optgroup label='North Pole'>
+<option value='ARC|Artic'>Artic</option>
+<option value='NPO|North Pole'>North Pole</option>
+<option value='SJM|Svalbard and Jan Mayen'>Svalbard and Jan Mayen</option>
+<optgroup>
+<optgroup label='North-America'>
+<option value='CAN|Canada'>Canada</option>
+<option value='MEX|Mexico'>Mexico</option>
+<option value='USA|USA'>USA</option>
+<optgroup>
+<optgroup label='Other'>
+<option value='NON|(Non-Localized)'>(Non-Localized)</option>
+<option value='MLC|MultiCountries'>MultiCountries</option>
+<option value='OTH|Other'>Other</option>
+<optgroup>
+<optgroup label='Pacific Ocean - East'>
+<option value='COK|Cook Islands'>Cook Islands</option>
+<option value='HSI|Eastern Island'>Eastern Island</option>
+<option value='FJI|Fiji'>Fiji</option>
+<option value='KIR|Kiribati'>Kiribati</option>
+<option value='MNP|Mariana Islands'>Mariana Islands</option>
+<option value='FSM|Micronesia'>Micronesia</option>
+<option value='NIU|Niue'>Niue</option>
+<option value='PCN|Pitcairn Islands'>Pitcairn Islands</option>
+<option value='TKL|Tokelau'>Tokelau</option>
+<option value='TON|Tonga'>Tonga</option>
+<optgroup>
+<optgroup label='Pacific Ocean - Middle'>
+<option value='ASM|American Samoa'>American Samoa</option>
+<option value='SLB|Solomon Islands'>Solomon Islands</option>
+<option value='UMI|U.S. Minor Outlying Islands'>U.S. Minor Outlying Islands</option>
+<optgroup>
+<optgroup label='Pacific Ocean - North'>
+<optgroup>
+<optgroup label='Pacific Ocean - South'>
+<option value='PYF|French Polynesia'>French Polynesia</option>
+<optgroup>
+<optgroup label='Pacific Ocean - West'>
+<option value='GUM|Guam'>Guam</option>
+<option value='MHL|Marshall Islands'>Marshall Islands</option>
+<option value='NRU|Nauru'>Nauru</option>
+<option value='NCL|New Caledonia'>New Caledonia</option>
+<option value='NFK|Norfolk Island'>Norfolk Island</option>
+<option value='PLW|Palau'>Palau</option>
+<option value='PHL|Philippines'>Philippines</option>
+<option value='WSM|Samoa'>Samoa</option>
+<option value='TUV|Tuvalu'>Tuvalu</option>
+<option value='VUT|Vanuatu'>Vanuatu</option>
+<option value='WLF|Wallis and Futuna'>Wallis and Futuna</option>
+<optgroup>
+<optgroup label='South Pole'>
+<option value='ATA|Antarctica'>Antarctica</option>
+<option value='ATF|French Southern Territories'>French Southern Territories</option>
+<option value='HMD|Heard Island and McDonald Islands'>Heard Island and McDonald Islands</option>
+<option value='SGS|South Georgia and the South Sandwich Islands'>South Georgia and the South Sandwich Islands</option>
+<optgroup>
+<optgroup label='South-America'>
+<option value='ARG|Argentina'>Argentina</option>
+<option value='BOL|Bolivia'>Bolivia</option>
+<option value='BRA|Brazil'>Brazil</option>
+<option value='CHL|Chile'>Chile</option>
+<option value='COL|Colombia'>Colombia</option>
+<option value='ECU|Ecuador'>Ecuador</option>
+<option value='FLK|Falkland Islands'>Falkland Islands</option>
+<option value='GUF|French Guiana'>French Guiana</option>
+<option value='ECG|Galapagos Island'>Galapagos Island</option>
+<option value='GUY|Guyana'>Guyana</option>
+<option value='PRY|Paraguay'>Paraguay</option>
+<option value='PER|Peru'>Peru</option>
+<option value='SUR|Suriname'>Suriname</option>
+<option value='URY|Uruguay'>Uruguay</option>
+<option value='VEN|Venezuela'>Venezuela</option>
+<optgroup>
+<optgroup label='South-Eastern Asia'>
+<optgroup>
+                        </select>
+                        </div>
+                        <br> 
+                    </div>                     
+                </div>
+                
+                <div class="form-group">
+                        <div class="col-xs-12">
+                        <label for="InputProvince">Province</label>
+                        <div class="input-group">
+                        <input type="text" class="form-control" name="province" placeholder="Enter Province/state etc. name" tabindex="6" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span> 
+                    </div>
+                    <br>                     
+                   </div>
+                </div>
+
+                <div class="form-group">
+                        <div class="col-xs-12">
+                        <label for="InputCity">City</label>
+                        <div class="input-group">
+                        <input type="text" class="form-control" name="settlement_name" placeholder="Enter city name" tabindex="7" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                    </div>
+                    <br> 
+                    </div>
+                </div>
+                 
+                 <div class="form-group">
+                        <div class="col-xs-12">
+                        <label for="InputStreetName">Address</label>
+                        <div class="input-group">
+                        <input type="text" class="form-control" name="address" placeholder="Enter Street Name and Number" tabindex="8" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                        </div>
+                        <br> 
+                    </div>                     
+                </div>
+
+                 <div class="form-group">
+                        <div class="col-xs-12">
+                        <label for="InputStreetName">Phone number</label>
+                        <div class="input-group">
+                        <input type="text" class="form-control" name="phone_number" placeholder="Please add your phone number (included country and area number)" tabindex="9" required>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                        </div>
+                        <br> 
+                    </div>                     
+                </div>
+
+                 <div class="form-group">
+                        <div class="col-xs-12">
+                        <label for="InputStreetName">Rationale registration request</label>
+                        <div class="input-group">
+                        <textarea class="form-control" name="registration_note" wrap="auto" tabindex="10" style="width: 100% !important;min-height:100px;" placeholder="Please tell us why you ask access to the EDIS RIS system." required></textarea>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                        </div>
+                        <br> 
+                    </div>                     
+                </div>
+                
+                 <div class="form-group">
+                        <div class="col-xs-12">
+                        <div class="input-group">
+                        <div class="g-recaptcha" data-sitekey="6LebohETAAAAAFHbXNaB8XVvR96Lu3q-keIlEhq2" style="width:100% !important" tabindex="11"></div>
+                        </div>
+                        <br> 
+                    </div>                     
+                </div>
+                                
+                <div class="form-group">
+                <div class="input-group-addon" style="text-align: center !important;">
+                <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-success pull-center" tabindex="12">
+                  
+                  </div>
+                </div>
+                </form>
+              </div>
+          </div>
+       </div>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $("#first_name").focus();
+    $('.chosen-select').chosen();
+
+    $(window).bind("pageshow", function() {
+        var form = $("#form1"); 
+        form[0].reset();
+    });
+
+$("#username").blur(function() {
+    var data = 0;
+    $.ajax({
+        type : 'POST',
+        url  : 'username-check.php',
+        data : $(this).serialize(),
+        success : function(data)
+            {
+            var return_data = parseInt(data);
+            if(return_data>0){
+                $("#user-availability-status").html("<span class='label label-danger'> Username Not Available.</span>");
+                $("#username").focus().val('');
+                $('input[type="submit"]').prop('disabled', true);
+            }else{
+                $("#user-availability-status").html("<span class='label label-success'> Username Available.</span>");
+                $('input[type="submit"]').prop('disabled', false); 
+            }
+            console.log(data);
+            }
+        });    
+    })
+
+
+})
+</script></div>
+
+<script src="js/bootstrap.min.js"></script>
+<script src="js/ie10-viewport-bug-workaround.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script src="js/toaster.settings.js"></script>
+<script type="text/javascript" src="js/edis.push.js"></script>
+
+
+
+<script type="text/javascript" src="assets/js/m-radio.min.js"></script>
+<script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+<script type="text/javascript" src="js/jquery.backstretch.min.js" async defer></script>
+
+</body>
+</html> 
